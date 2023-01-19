@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Get the commit message
+commit_message=$(git log -1 --pretty=%B)
+
+# Check if the commit message includes keyword1
+if echo "$commit_message" | grep -q "feat:"; then
+    echo "Commit message includes feat."
+else
+    # Check if the commit message includes keyword2
+    if echo "$commit_message" | grep -q "fix:"; then
+        echo "Commit message includes fix."
+    else
+        # Check if the commit message includes keyword3
+        if echo "$commit_message" | grep -q "docs:"; then
+            echo "Commit message includes docs."
+        else
+            echo "Commit message must include one of the keyword1, keyword2 or keyword3"
+            exit 1
+        fi
+    fi
+fi
